@@ -1,0 +1,66 @@
+<html>
+<head>
+  <script src="p5.min.js"></script>
+  <style>
+  body{
+  overflow:hidden;
+  margin:0;
+  padding:0;
+  }
+  </style>
+</head>
+<body>
+  <h1 id = "x">X</h1>
+  <h1 id = "y">Y</h1>
+
+<script>
+var w = window.innerWidth;
+var h = window.innerHeight;
+//Create a new object globally called new ball
+var ball = new ball();
+var $ = document
+
+
+
+  function setup() {
+  createCanvas(w, h);
+  }
+
+  function draw() {
+  background(255);
+  ball.show();
+  ball.move();
+  }
+  function ball() {
+  this.x = 100;
+  this.y = 100;
+  this.show = function(){
+  fill(color('red'));
+  ellipse(this.x,this.y,100,100);
+  $.getElementById('x').innerHTML = this.x;
+  $.getElementById('y').innerHTML = this.y;
+
+  
+   };
+   this.move = function(){
+     
+  if ((keyCode == "39") && (this.x < w - 50)){
+    this.x += 10;
+  }
+   //Right arrow, on press move right 10 pixels
+  if ((keyCode == "40") && (this.y < h - 50)){
+    this.y += 10;
+  }
+   //Left arrow, on press move left 10 pixels
+  if ((keyCode == "37") && (this.x > 50)){
+    this.x += -10;
+  }
+   //Down arrow, on press move down 10 pixels
+  if ((keyCode == "38")&& (this.y > 50)){
+    this.y += -10;
+}
+   }
+  }
+</script>
+</body>
+</html>
