@@ -1,0 +1,100 @@
+<html>
+<head>
+  <script src="p5.min.js"></script>
+  <style>
+  body{
+  overflow:hidden;
+  margin:0;
+  padding:0;
+  }
+  </style>
+</head>
+<body>
+
+<script>
+var w = window.innerWidth;
+var h = window.innerHeight;
+//Create a new object globally called new ball
+var ball = new ball();
+var bball = new bball();
+var $ = document
+
+
+
+  function setup() {
+  createCanvas(w, h);
+  }
+
+  function draw() {
+  background(255);
+  ball.show();
+  ball.move();
+  bball.show();
+  bball.move();
+ 
+  }
+  function ball() {
+  this.x = 100;
+  this.y = 100;
+  this.show = function(){
+  fill(color('red'));
+  circle(this.x,this.y,25,25);
+   
+  };
+   
+   this.move = function(){
+     
+  if ((keyIsDown(68)) && (this.x < w - 25)){
+    this.x += 10;
+  }
+   //Right arrow, on press move right 10 pixels
+  if ((keyIsDown(83)) && (this.y < h - 25)){
+    this.y += 10;
+  }
+   //Left arrow, on press move left 10 pixels
+  if ((keyIsDown(65)) && (this.x > 0)){
+    this.x += -10;
+  }
+   //Down arrow, on press move down 10 pixels
+  if ((keyIsDown(87))&& (this.y > 0)){
+    this.y += -10;
+}
+   }
+   
+   
+  }
+  
+  
+  
+   function bball() {
+  this.x = 400;
+  this.y = 400;
+  this.show = function(){
+  fill(color('blue'));
+  circle(this.x,this.y,25,25);
+   };
+   this.move = function(){
+     
+  if ((keyIsDown(76)) && (this.x < w - 25)){
+    this.x += 10;
+  }
+   //Right arrow, on press move right 10 pixels
+  if ((keyIsDown(75)) && (this.y < h - 25)){
+    this.y += 10;
+  }
+   //Left arrow, on press move left 10 pixels
+  if ((keyIsDown(74)) && (this.x > 0)){
+    this.x += -10;
+  }
+   //Down arrow, on press move down 10 pixels
+  if ((keyIsDown(73))&& (this.y > 0)){
+    this.y += -10;
+}
+   }
+   
+  }
+  
+  
+</script>
+</body>
+</html>
