@@ -1,0 +1,146 @@
+<html>
+<head>
+  <script src="p5.min.js"></script>
+  <style>
+  body{
+  overflow:hidden;
+  margin:0;
+  padding:0;
+  }
+  </style>
+</head>
+<body>
+
+<script>
+var w = window.innerWidth;
+var h = window.innerHeight;
+//Create a new object globally called new ball
+var ball = new ball();
+var bball = new bball();
+var power = new power();
+var bbx = 25;
+var bby = 25;
+var bbx1 = 50;
+var bby1 = 50;
+var power2 = 50;
+var power1 = 50;
+
+
+var $ = document
+  function setup() {
+  createCanvas(w, h);
+  }
+  function draw() {
+  background(255);
+  ball.show();
+  ball.move();
+  bball.show();
+  bball.move();
+  bball.kill();
+  power.show();
+  power.speed();
+ 
+  }
+  function power(){
+    this.x = 50;
+    this.y = 50;
+    this.show = function(){
+       fill(color('green'));
+  circle(this.x,this.y,power2,power1);
+    }
+    this.speed = function(){
+           d = dist (this.x,this.y,ball.x,ball.y);
+           d2 = dist (this.x,this.y,bball.x,bball.y);
+           if(d < 100){
+             ball.x = 500;
+             ball.y= 500;
+
+           }
+           if(d2<100){
+             bball.x = 1350;
+             bball.y = 50;
+
+             
+           }
+          
+
+    }
+  }
+  function ball() {
+  this.x = 350;
+  this.y = 350;
+  this.show = function(){
+  fill(color('red'));
+  circle(this.x,this.y,bbx1,bby1);
+   
+  };
+   
+   this.move = function(){
+     
+  if ((keyIsDown(68)) && (this.x < w - bbx1)){
+    this.x += 10;
+  }
+   //Right arrow, on press move right 10 pixels
+  if ((keyIsDown(83)) && (this.y < h - bby1)){
+    this.y += 10;
+  }
+   //Left arrow, on press move left 10 pixels
+  if ((keyIsDown(65)) && (this.x > 0)){
+    this.x += -10;
+  }
+   //Down arrow, on press move down 10 pixels
+  if ((keyIsDown(87))&& (this.y > 0)){
+    this.y += -10;
+}
+   }
+   
+   
+  }
+  
+  
+  
+   function bball() {
+  this.x = 400;
+  this.y = 400;
+  this.show = function(){
+  fill(color('blue'));
+  circle(this.x,this.y,bbx,bby);
+   };
+   this.move = function(){
+     
+  if ((keyIsDown(76)) && (this.x < w - bbx)){
+    this.x += 10;
+  }
+   //Right arrow, on press move right 10 pixels
+  if ((keyIsDown(75)) && (this.y < h - bby)){
+    this.y += 10;
+  }
+   //Left arrow, on press move left 10 pixels
+  if ((keyIsDown(74)) && (this.x > 0)){
+    this.x += -10;
+  }
+   //Down arrow, on press move down 10 pixels
+  if ((keyIsDown(73))&& (this.y > 0)){
+    this.y += -10;
+}
+   }
+   this.kill = function(){
+     d = dist (this.x,this.y,ball.x,ball.y);
+     if( d<50){
+     bbx += 2;
+     bby += 2;
+     bbx1 += -2;
+     bby1 +=- 2;
+     if(( bbx1 <1) || (bby1 < 1)){
+       noLoop();
+       window.alert("RED U SUCK")
+     }
+     }
+   }
+   
+  }
+  
+  
+</script>
+</body>
+</html>
