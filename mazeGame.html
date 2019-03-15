@@ -40,6 +40,8 @@ var hit3 = false;
 var hit4 = false;
 var hit5 = false;
 var hit6 = false;
+var hit7 = false;
+
 let bg;
 
 
@@ -60,12 +62,15 @@ let bg;
   line5.show();
   end.show();
   line5.kill();
+  line5.win();
   hit = collideRectCircle(line1.x,line1.y,bbx,bby,ball.x,ball.y,bbx1,bby1);
   hit2 = collideRectCircle(line2.x,line2.y,bbx,bby,ball.x,ball.y,bbx1,bby1);
   hit3 = collideRectCircle(line3.x,line3.y,bbx,bby,ball.x,ball.y,bbx1,bby1);
   hit4 = collideRectCircle(line4.x,line4.y,bbx,bby,ball.x,ball.y,bbx1,bby1);
   hit5 = collideRectCircle(line5.x,line5.y,bbx,bby,ball.x,ball.y,bbx1,bby1);
   hit6 = collideRectCircle(end.x,end.y,power2,power1,ball.x,ball.y,bbx1,bby1);
+  hit7 = collideRectCircle(bball.x,bball.y,l1,l2,ball.x,ball.y,bbx1,bby1);
+
 
   print("colliding? " + hit);
   print("colliding2? " + hit2);
@@ -94,26 +99,26 @@ let bg;
   this.y = 0;
   this.show = function(){
   fill(color('red'));
-  circle(this.x,this.y,bbx1,bby1);
+  circle(this.x,this.y,10);
    
   };
    
    this.move = function(){
      
   if ((keyIsDown(68)) && (this.x < w - bbx1)){
-    this.x += 1;
+    this.x += 4;
   }
    //Right arrow, on press move right 10 pixels
   if ((keyIsDown(83)) && (this.y < h - bby1)){
-    this.y += 1;
+    this.y += 4;
   }
    //Left arrow, on press move left 10 pixels
   if ((keyIsDown(65)) && (this.x > 0)){
-    this.x += -1;
+    this.x += -4;
   }
    //Down arrow, on press move down 10 pixels
   if ((keyIsDown(87))&& (this.y > 0)){
-    this.y += -1;
+    this.y += -4;
 }
    }
    
@@ -133,7 +138,7 @@ let bg;
    
   }
    function line1() {
-  this.x = 280;
+  this.x = 265;
   this.y = 0;
   this.show = function(){
   fill(color('red'));
@@ -143,7 +148,7 @@ let bg;
    
   }
    function line2() {
-  this.x = 150;
+  this.x = 140;
   this.y = 0;
   this.show = function(){
   fill(color('red'));
@@ -153,7 +158,7 @@ let bg;
    
   }
    function line3() {
-  this.x = 20;
+  this.x = 15;
   this.y = 0;
   this.show = function(){
   fill(color('red'));
@@ -173,7 +178,7 @@ let bg;
    
   }
    function line5() {
-  this.x = 220;
+  this.x = 210;
   this.y = 35;
   var diam = 15;
   this.show = function(){
@@ -181,15 +186,24 @@ let bg;
   rect(this.x,this.y,bbx,bby);
    };
    this.kill = function(){ 
-    if((hit == true) ||(hit2 == true)||(hit3 == true)||(hit4 == true)||(hit5 == true)||(hit6 == true)){
+    if((hit == true) ||(hit2 == true)||(hit3 == true)||(hit4 == true)||(hit5 == true)||(hit7 == true)){
     background(bg);
     noLoop();
   }
 
   };
+  this.win = function(){
+    if(hit6 == true) {
+window.alert("YOU WIN");
+    noLoop();
+  };
+  }
+  
+
    }
   
   
 </script>
 </body>
 </html>
+
