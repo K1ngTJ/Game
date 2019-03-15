@@ -1,0 +1,195 @@
+<html>
+<head>
+  <script src="p5.min.js"></script>
+  <script src="p5.collide2d.min.js"></script>
+  <style>
+  body{
+  overflow:hidden;
+  margin:0;
+  padding:0;
+  }
+  </style>
+</head>
+<body>
+
+<script>
+var w = window.innerWidth;
+var h = window.innerHeight;
+//Create a new object globally called new ball
+var ball = new ball();
+var bball = new bball();
+var line1 = new line1();
+var line2 = new line2();
+var line3 = new line3();
+var line4 = new line4();
+var line5 = new line5();
+
+var end = new end();
+var bbx =25;
+var bby = 340;
+var l1 =340;
+var l2 = 25;
+var bbx1 = 15;
+var bby1 = 15;
+var power2 = 20;
+var power1 = 400;
+var $ = document;
+var hit = false;
+var hit2 = false;
+var hit3 = false;
+var hit4 = false;
+var hit5 = false;
+var hit6 = false;
+let bg;
+
+
+  function setup() {
+  createCanvas(w, h);
+  bg = loadImage('lion.jpg'); 
+  }
+  function draw() {
+  background(255);
+  
+  ball.show();
+  ball.move();
+  bball.show();
+  line1.show();
+  line2.show();
+  line3.show();
+  line4.show();
+  line5.show();
+  end.show();
+  line5.kill();
+  hit = collideRectCircle(line1.x,line1.y,bbx,bby,ball.x,ball.y,bbx1,bby1);
+  hit2 = collideRectCircle(line2.x,line2.y,bbx,bby,ball.x,ball.y,bbx1,bby1);
+  hit3 = collideRectCircle(line3.x,line3.y,bbx,bby,ball.x,ball.y,bbx1,bby1);
+  hit4 = collideRectCircle(line4.x,line4.y,bbx,bby,ball.x,ball.y,bbx1,bby1);
+  hit5 = collideRectCircle(line5.x,line5.y,bbx,bby,ball.x,ball.y,bbx1,bby1);
+  hit6 = collideRectCircle(end.x,end.y,power2,power1,ball.x,ball.y,bbx1,bby1);
+
+  print("colliding? " + hit);
+  print("colliding2? " + hit2);
+  print("colliding3? " + hit3);
+  print("colliding4? " + hit4);
+  print("colliding5? " + hit5);
+  print("colliding6? " + hit6);
+
+}
+  
+  function end(){
+    this.x = 355;
+    this.y = 0;
+    this.show = function(){
+       fill(color('green'));
+  rect(this.x,this.y,power2,power1);
+    }
+   
+  }
+
+  
+  
+  
+    function ball() {
+  this.x = 0;
+  this.y = 0;
+  this.show = function(){
+  fill(color('red'));
+  circle(this.x,this.y,bbx1,bby1);
+   
+  };
+   
+   this.move = function(){
+     
+  if ((keyIsDown(68)) && (this.x < w - bbx1)){
+    this.x += 1;
+  }
+   //Right arrow, on press move right 10 pixels
+  if ((keyIsDown(83)) && (this.y < h - bby1)){
+    this.y += 1;
+  }
+   //Left arrow, on press move left 10 pixels
+  if ((keyIsDown(65)) && (this.x > 0)){
+    this.x += -1;
+  }
+   //Down arrow, on press move down 10 pixels
+  if ((keyIsDown(87))&& (this.y > 0)){
+    this.y += -1;
+}
+   }
+   
+   
+  }
+  
+  
+  
+   function bball() {
+  this.x = 0;
+  this.y = 375;
+  this.show = function(){
+  fill(color('red'));
+  rect(this.x,this.y,l1,l2);
+   };
+   
+   
+  }
+   function line1() {
+  this.x = 280;
+  this.y = 0;
+  this.show = function(){
+  fill(color('red'));
+  rect(this.x,this.y,bbx,bby);
+   };
+   
+   
+  }
+   function line2() {
+  this.x = 150;
+  this.y = 0;
+  this.show = function(){
+  fill(color('red'));
+  rect(this.x,this.y,bbx,bby);
+   };
+   
+   
+  }
+   function line3() {
+  this.x = 20;
+  this.y = 0;
+  this.show = function(){
+  fill(color('red'));
+  rect(this.x,this.y,bbx,bby);
+   };
+   
+   
+  }
+   function line4() {
+  this.x = 83;
+  this.y = 35;
+  this.show = function(){
+  fill(color('red'));
+  rect(this.x,this.y,bbx,bby);
+   };
+   
+   
+  }
+   function line5() {
+  this.x = 220;
+  this.y = 35;
+  var diam = 15;
+  this.show = function(){
+  fill(color('red'));
+  rect(this.x,this.y,bbx,bby);
+   };
+   this.kill = function(){ 
+    if((hit == true) ||(hit2 == true)||(hit3 == true)||(hit4 == true)||(hit5 == true)||(hit6 == true)){
+    background(bg);
+    noLoop();
+  }
+
+  };
+   }
+  
+  
+</script>
+</body>
+</html>
